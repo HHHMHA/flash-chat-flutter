@@ -11,10 +11,10 @@ class Router {
     String screenName = settings.name;
 
     switch( screenName ) {
-      case LoginScreen.ROUTE_NAME: return MaterialPageRoute( builder: (context) => LoginScreen() );
-      case WelcomeScreen.ROUTE_NAME: return MaterialPageRoute( builder: (context) => WelcomeScreen() );
-      case ChatScreen.ROUTE_NAME: return MaterialPageRoute( builder: (context) => ChatScreen() );
-      case RegistrationScreen.ROUTE_NAME: return MaterialPageRoute( builder: (context) => RegistrationScreen() );
+      case LoginScreen.routeName: return MaterialPageRoute( builder: (context) => LoginScreen() );
+      case WelcomeScreen.routeName: return MaterialPageRoute( builder: (context) => WelcomeScreen() );
+      case ChatScreen.routeName: return MaterialPageRoute( builder: (context) => ChatScreen() );
+      case RegistrationScreen.routeName: return MaterialPageRoute( builder: (context) => RegistrationScreen() );
       default: return MaterialPageRoute( builder: (context) => LoginScreen() );
     }
   }

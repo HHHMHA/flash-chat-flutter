@@ -13,7 +13,7 @@ class FlashChat extends StatelessWidget {
           body1: TextStyle(color: Colors.black54),
         ),
       ),
-      initialRoute: WelcomeScreen.ROUTE_NAME,
+      initialRoute: WelcomeScreen.routeName,
       onGenerateRoute: Router.generateRoute,
     );
   }

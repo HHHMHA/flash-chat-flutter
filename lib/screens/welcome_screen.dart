@@ -2,14 +2,40 @@ import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class WelcomeScreen extends StatefulWidget {
-  static const ROUTE_NAME = '/';
+  static const routeName = '/';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+  static const double logoMaxHeight = 60.0;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+      upperBound: logoMaxHeight,
+    );
+
+    animationController.forward();
+    animationController.addListener(() {
+      setState(() {}); // rebuild the screen to apply changes
+    });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +48,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 60.0,
+                Hero(
+                  tag: kLogoAnimationTag,
+                  child: Container(
+                    child: Image.asset('images/logo.png'),
+                    height: animationController.value,
+                  ),
                 ),
                 Text(
                   'Flash Chat',
@@ -46,7 +75,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.ROUTE_NAME);
+                    Navigator.pushNamed(context, LoginScreen.routeName);
                   },
                   minWidth: 200.0,
                   height: 42.0,
@@ -64,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.ROUTE_NAME);
+                    Navigator.pushNamed(context, RegistrationScreen.routeName);
                   },
                   minWidth: 200.0,
                   height: 42.0,
