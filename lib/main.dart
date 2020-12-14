@@ -1,4 +1,4 @@
-import 'package:flash_chat/router.dart';
+import 'package:flash_chat/router.dart' as router;
 import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ class FlashChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: WelcomeScreen.routeName,
-      onGenerateRoute: Router.generateRoute,
+      onGenerateRoute: router.Router.generateRoute,
     );
   }
 }
