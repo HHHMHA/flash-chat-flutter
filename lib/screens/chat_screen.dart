@@ -7,6 +7,7 @@ import 'package:flash_chat/constants.dart';
 import '../firebase_constants.dart';
 
 final _firestore = FirebaseFirestore.instance;
+User loggedInUser;
 
 class ChatScreen extends StatefulWidget {
   static const routeName = '/chat';
@@ -18,7 +19,6 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final messageTextController = TextEditingController()
   final _auth = FirebaseAuth.instance;
-  User loggedInUser;
   String messageText;
 
   @override
@@ -111,19 +111,20 @@ class MessageStream extends StatelessWidget {
           return Center(
             child: CircularProgressIndicator(),
           );
-        final messages = snapshot.data.docs;
+        final messages = snapshot.data.docs.reversed;
 
         List<MessageBubble> messageBubbles = [];
         for ( var message in messages ) {
           final messageText = message.data["text"];
           final messageSender = message.data["sender"];
 
-          final messageBubble = MessageBubble( sender: messageSender, text: mesageText );
+          final messageBubble = MessageBubble( sender: messageSender, text: messageText, isUserSender: messageSender == loggedInUser.email, );
           messageBubbles.add( messageBubble );
         }
 
         return Expanded(
           child: ListView(
+            reverse: true,
             padding: EdgeInsets.symmetric( horizontal: 10.0, vertical: 20.0 ),
             children: messageBubbles,
           ),

@@ -1,3 +1,4 @@
+import 'package:flash_chat/widgets/message_bubble.dart';
 import 'package:flutter/material.dart';
 
 const kSendButtonTextStyle = TextStyle(
@@ -39,3 +40,25 @@ const kTextFieldDecoration = InputDecoration(
 
 final kEmailTextFieldDecoration = kTextFieldDecoration.copyWith(hintText: 'Enter your email');
 final kPasswordTextFieldDecoration = kTextFieldDecoration.copyWith(hintText: 'Enter your password');
+
+final kSenderMessageBubbleStyle = MessageBubbleStyle(
+  backgroundColor: Colors.lightBlueAccent,
+  textColor: Colors.white,
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(30.0),
+    bottomLeft: Radius.circular(30.0),
+    bottomRight: Radius.circular(30.0),
+  ),
+  crossAxisAlignment: CrossAxisAlignment.end,
+);
+
+final kReceiverMessageBubbleStyle = MessageBubbleStyle(
+  backgroundColor: Colors.white,
+  textColor: Colors.black,
+  borderRadius: BorderRadius.only(
+    topRight: Radius.circular(30.0),
+    bottomLeft: Radius.circular(30.0),
+    bottomRight: Radius.circular(30.0),
+  ),
+  crossAxisAlignment: CrossAxisAlignment.start,
+);
